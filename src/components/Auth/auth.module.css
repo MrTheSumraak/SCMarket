@@ -36,6 +36,12 @@
     margin-bottom: 50px; /* немного выше земли */
     max-width: 870px;
     margin-block: auto;
+
+
+    width: 100%;
+    box-sizing: border-box;
+
+
 }
 
 /* === Текст и контент === */
@@ -132,5 +138,93 @@
 
     .rowContainer {
         gap: calc(60px + (100vw - 1920px) * 0.05); /* немного увеличиваем расстояние */
+    }
+    
+}
+
+/* === Персонаж для экранов 1280px — 1920px === */
+/* === Адаптация authWindow для экранов <1920 === */
+
+@media (max-width: 1920px) {
+    .stalkerSetting {
+        height: calc(950px - (1920px - 100vw) * 0.35);
+        max-height: 950px; /* не вылезаем за базовый размер */
+    }
+
+    .rowContainer {
+        gap: calc(60px - (1920px - 100vw) * 0.03);
+        padding-inline: calc(80px - (1920px - 100vw) * 0.04);
+    }
+
+    .authWindow {
+        max-width: 870px; /* оставляем базовую ширину */
+        padding-inline: calc(137px - (1920px - 100vw) * 0.5);
+        padding-block: calc(73px - (1920px - 100vw) * 0.1);
+        margin-bottom: calc(50px - (1920px - 100vw) * 0.05);
+    }
+
+    .authWindow h1 {
+        font-size: calc(40px - (1920px - 100vw) * 0.008);
+        max-width: calc(680px - (1920px - 100vw) * 0.1);
+    }
+
+    .description {
+        font-size: calc(24px - (1920px - 100vw) * 0.004);
+        max-width: calc(588px - (1920px - 100vw) * 0.05);
+    }
+
+    .buttonLogin {
+        font-size: calc(24px - (1920px - 100vw) * 0.004);
+        padding-inline: calc(147.5px - (1920px - 100vw) * 0.06);
+        padding-block: calc(20px - (1920px - 100vw) * 0.01);
+        max-height: calc(70px - (1920px - 100vw) * 0.02);
+        margin-block: calc(58px - (1920px - 100vw) * 0.02) calc(40px - (1920px - 100vw) * 0.01);
+    }
+
+    .exboAuth {
+        font-size: calc(16px - (1920px - 100vw) * 0.003);
+        max-width: calc(502px - (1920px - 100vw) * 0.04);
+    }
+}
+
+/* === Для экранов меньше 1280px (десктопы — ноутбуки) === */
+@media (max-width: 1280px) {
+    .stalkerSetting {
+        height: calc(950px - 250px); /* минимальная высота для маленьких экранов */
+    }
+
+    .rowContainer {
+        gap: 40px;
+        padding-inline: 40px;
+    }
+
+    .authWindow {
+        padding-inline: 60px;
+        padding-block: 50px;
+        max-width: 600px;
+        margin-bottom: 30px;
+    }
+
+    .authWindow h1 {
+        font-size: 32px;
+        max-width: 480px;
+    }
+
+    .description {
+        font-size: 20px;
+        max-width: 400px;
+    }
+
+    .buttonLogin {
+        font-size: 20px;
+        padding-inline: 100px;
+        padding-block: 16px;
+        max-height: 60px;
+        margin-block: 40px 20px;
+    }
+
+    .exboAuth {
+        font-size: 14px;
+        max-width: 360px;
     }
 }
