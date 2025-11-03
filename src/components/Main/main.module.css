@@ -1,0 +1,5 @@
+.backgroundContainer{
+    background-image: url('../../assets/image.png');
+    background-size: cover;
+    height: 100%;
+}
