@@ -1,7 +1,7 @@
 import { Route, Routes, useLocation } from 'react-router-dom'
 import './App.css'
-import { Auth } from '../Auth/auth';
 import { Auction } from '../pages/Auction/auction';
+import { Auth } from '../pages/Auth/auth';
 
 function App() {
   const location = useLocation();
