@@ -1,16 +1,26 @@
 // store/itemsSlice.ts
 import { createSlice } from '@reduxjs/toolkit';
-import { getAllItem } from '../../utils/SCApi';
 import { getItems } from '../Async/items';
+import type { TItemRank, TItemType } from '../../utils/types';
+
+export interface INameGuns  {
+  args: [],
+  key: string,
+  lines: {
+    ru: string,
+    en: string,
+    es: string,
+    fr: string
+  }
+}
 
 export type TItemGun = {
-  id: string;
-  name: string;
-  color: string;
-  type: string;
-  maxDistance: number;
-  startDamage: number;
-  endDamage: number;
+  category: TItemType,
+  color: TItemRank,
+  id: string,
+  infoBlocks: [],
+  name: INameGuns,
+  status: []
 };
 
 export type TItemArtefact = {};
@@ -19,7 +29,7 @@ export type TItemArmor = {
   id: string;
   name: string;
   color: string;
-  type: string;
+  type: TItemType;
 };
 
 export interface IAllItems {
@@ -45,11 +55,17 @@ const itemsSlice = createSlice({
       .addCase(getItems.pending, (state) => {
         state.loading = true;
       })
-      .addCase(getItems.fulfilled, (state, action) => {
-        console.log(action.payload);
+      .addCase(getItems.fulfilled, (state, action) => {        
+        state.guns.push(...action.payload);
+        state.loading = false;
       });
   },
+  selectors: {
+    getAllGuns: (state) => state.guns,
+    isLoading: (state) => state.loading
+  }
 });
 
 export const { reducer } = itemsSlice;
+export const { getAllGuns, isLoading } = itemsSlice.selectors;
 export default itemsSlice.reducer;

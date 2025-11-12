@@ -1,0 +1,121 @@
+:root {
+  --rarity: #001f3f;                           /* основной background */
+  --rarity-common: rgba(40,50,159,0.25);       /* обычная */
+  --rarity-uncommon: rgba(130,90,200,0.25);     /* необычная */
+  --rarity-legendary: rgba(255,215,0,0.25);    /* легендарная */
+  --rarity-rare: rgba(150,70,200,0.25);         /* очень редкая */
+
+   --item-font: 'Montserrat'
+}
+
+.itemCard {
+   position: relative;
+
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+
+   font-family: var(--item-font, sans-serif);
+   font-weight: 700;
+
+   width: clamp(100px, 13.42vw, 200px);
+   height: clamp(100px, 13.42vw, 200px);
+
+   background-color: var(--rarity, #001f3f);
+   background-image: url('../../assets/weaponAutomat.png');
+   background-repeat: no-repeat;
+   background-position: center;
+   background-size: cover;
+}
+
+.weaponWrapper {
+   width: 100%;
+   height: clamp(120px, 10.59vw, 165px);
+
+   padding-inline-start: clamp(6px, 0.47vw, 9px);;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+
+   background-position: center;
+   background-repeat: no-repeat;
+}
+
+.weaponHeader {
+   text-transform: uppercase;
+}
+
+.weaponHeader h3 {
+   font-size: clamp(10px, 1.78vw, 15px);
+   color: #fff;
+}
+
+.weaponHeader p {
+   font-size: clamp(6px, 0.62vw, 10px);
+   color: #3557C8;
+}
+
+.weaponFooter {
+   color: #fff;
+   line-height: 0.8;
+   margin-block-end: clamp(6px, 0.62vw, 10px);
+}
+
+.weaponPrice {
+   position: relative;
+   display: block;
+   font-size: clamp(10px, 1.78vw, 15px);
+}
+
+.weaponPrice::after {
+   content: '';
+   display: inline-block;
+   width: clamp(6px, 0.62vw, 10px);
+   height: clamp(6px, 0.62vw, 10px);
+   background-image: url('../../assets/iconRub.png');
+}
+
+.weaponRarity {
+   font-size: clamp(5px, 1.42vw, 8px);
+}
+
+.itemCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100px;
+  height: 100px;
+  filter: blur(12px);
+  pointer-events: none;
+}
+
+.itemCard::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100px;
+  height: 100px;
+  filter: blur(12px);
+  pointer-events: none;
+}
+
+/* Цвета бликов по редкости */
+
+.glowCommon::before, .glowCommon::after {
+  background: radial-gradient(circle at top right, var(--rarity-common, rgba(40,50,159,0.25)) 0%, transparent 150%);
+}
+
+.glowUnusual::before, .glowUnusual::after {
+  background: radial-gradient(circle at top right, var(--rarity-uncommon, rgba(130,90,200,0.25)) 0%, transparent 150%);
+}
+
+.glowLegendary::before, .glowLegendary::after {
+  background: radial-gradient(circle at top right, var(--rarity-legendary, rgba(255,215,0,0.25)) 0%, transparent 150%);
+}
+
+.glowRare::before, .glowRare::after {
+  background: radial-gradient(circle at top right, var(--rarity-rare, rgba(70,130,255,0.25)) 0%, transparent 150%);
+}

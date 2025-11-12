@@ -1,9 +1,10 @@
-const URL = 'https://dapi.stalcraft.net';
+import type { TItemGun } from "../service/slices/items.slice";
+
+//const URL = 'https://dapi.stalcraft.net';
 
 const baseURL =
   'https://api.github.com/repos/EXBO-Studio/stalcraft-database/contents/ru/items/weapon';
 const basePaths = [
-  'assault_rifle',
   'pistol',
   'machine_gun',
   'shotgun_rifle',
@@ -11,7 +12,8 @@ const basePaths = [
   'submachine_gun',
 ];
 
-export const getAllItem = async () => {
+export const getAllItem = async (): Promise<TItemGun[]> => {
+
   try {
     const allCategory = await Promise.all(
       basePaths.map((path) =>
@@ -27,7 +29,7 @@ export const getAllItem = async () => {
       ejectJson.map((url) => fetch(url).then((res) => res.json())),
     );
 
-    return itemResponses;
+    return itemResponses as TItemGun[];
   } catch (error) {
     console.error('Error fetching items:', error);
     return [];
