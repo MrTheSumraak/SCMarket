@@ -4,7 +4,7 @@ import type { AppDispatch } from "../../../service/store";
 import { getItems } from "../../../service/Async/items";
 import { Navigation } from "../../Navigation/navigation";
 import styles from './auction.module.css'
-import WeaponItemComponentUI from "../../UI/CardIUI/WeaponItemComponentUI";
+import ItemComponentUI from "../../UI/CardIUI/ItemComponentUI";
 import { getAllGuns, isLoading } from "../../../service/slices/items.slice";
 import { nanoid } from "@reduxjs/toolkit";
 import { LoadingUI } from "../../UI/loadingUI/loadingUI";
@@ -33,7 +33,7 @@ export const Auction = () => {
                         <div className={styles.containerCards}>
                             {allGuns.map((item) => {
                                 return (
-                                    <WeaponItemComponentUI key={nanoid(10)} category={item.category} name={item.name.lines.ru} price={1000} rarity={item.color} type={item.category} id={item.id} />
+                                    <ItemComponentUI key={nanoid(10)} category={item.category} name={item.name.lines.ru} price={1000} rarity={item.color} type={item.category} id={item.id} />
                                 )
                             })}
                         </div>

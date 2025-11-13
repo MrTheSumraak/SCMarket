@@ -7,6 +7,7 @@ const baseURL =
 const basePaths = [
   'pistol',
   'machine_gun',
+  'assault_rifle',
   'shotgun_rifle',
   'sniper_rifle',
   'submachine_gun',

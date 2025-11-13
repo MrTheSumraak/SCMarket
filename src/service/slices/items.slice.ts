@@ -14,6 +14,17 @@ export interface INameGuns  {
   }
 }
 
+export interface INameArtefacts {
+  args: [],
+  key: string,
+  lines: {
+      ru: string,
+      en: string,
+      es: string,
+      fr: string
+  }
+}
+
 export type TItemGun = {
   category: TItemType,
   color: TItemRank,

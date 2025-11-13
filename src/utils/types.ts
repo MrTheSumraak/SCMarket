@@ -1,6 +1,6 @@
 export const TYPES_ITEMS = {
     'weapon/pistol': 'Пистолеты',
-    'weapon/rifle': 'Винтовки',
+    'weapon/assault_rifle': 'Винтовки',
     'weapon/machine_gun': 'Пулеметы',
     'weapon/shotgun_rifle': 'Дробовики',
     'weapon/sniper_rifle': 'Снайперские винтовки',
@@ -19,3 +19,4 @@ export const RANKS_ITEMS = {
 }
 
 export type TItemRank = keyof typeof RANKS_ITEMS;
+
