@@ -77,7 +77,7 @@
    display: inline-block;
    width: clamp(6px, 0.62vw, 10px);
    height: clamp(6px, 0.62vw, 10px);
-   background-image: url('../../assets/iconRub.png');
+   background-image: url('../CardIUI/assets/iconRub.png');
 }
 
 .weaponRarity {
@@ -172,7 +172,7 @@ color:#9F288F;
 }
 
 .glowNewbieText {
-   color: #2d7914;
+   color: #45a226;
    z-index: -1;
 }
 

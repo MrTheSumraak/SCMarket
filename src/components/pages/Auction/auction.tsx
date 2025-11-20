@@ -1,21 +1,22 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import type { AppDispatch } from "../../../service/store";
-import { getItems } from "../../../service/Async/items";
 import { Navigation } from "../../Navigation/navigation";
 import styles from './auction.module.css'
-import ItemComponentUI from "../../UI/CardIUI/ItemComponentUI";
-import { getAllGuns, isLoading } from "../../../service/slices/items.slice";
-import { nanoid } from "@reduxjs/toolkit";
+import { selectAllItems, selectItemsLoading } from "../../../service/slices/items.slice";
 import { LoadingUI } from "../../UI/loadingUI/loadingUI";
+import ItemComponentUI from "../../UI/CardIUI/ItemComponentUI";
+import { nanoid } from "@reduxjs/toolkit";
+import { getItems } from "../../../service/Async/items";
+import type { TItemConfig } from "../../../utils/types";
 
 
 
 
 export const Auction = () => {
     const dispatch: AppDispatch = useDispatch();
-    const allGuns = useSelector(getAllGuns);
-    const getLoading = useSelector(isLoading);
+    const allItems = useSelector(selectAllItems);
+    const getLoading = useSelector(selectItemsLoading);
     useEffect(() => {
         dispatch(getItems())
     }, [])
@@ -24,19 +25,23 @@ export const Auction = () => {
             <Navigation />
             {getLoading ? <LoadingUI /> : (
                 <div className={styles.containerBody}>
-                    {/* Сюда вставить уже то что над */}
-                    <div className={styles.containerContent}>
-                        {/* Здесь у нас контейнер под горизонталку */}
-                        <div className={styles.containerFilter}>
-                            <p>test</p>
-                        </div>
-                        <div className={styles.containerCards}>
-                            {allGuns.map((item) => {
-                                return (
-                                    <ItemComponentUI key={nanoid(10)} category={item.category} name={item.name.lines.ru} price={1000} rarity={item.color} type={item.category} id={item.id} />
-                                )
-                            })}
-                        </div>
+                    <div className={styles.containerCards}>
+                        {Object.entries(allItems).map(([categoryName, items]) => {
+                            // Пропускаем loading
+                            if (categoryName === 'loading') return null;
+
+                            return (items as TItemConfig[]).map(item => (
+                                <ItemComponentUI
+                                    key={nanoid(10)}
+                                    id={item.id}
+                                    rarity={item.color}
+                                    price={1000}
+                                    name={item.name.lines.ru}
+                                    type={item.category}
+                                    category={categoryName}
+                                    image={item.image} />
+                            ));
+                        })}
                     </div>
                 </div>
             )}

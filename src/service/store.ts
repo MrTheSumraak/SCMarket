@@ -2,8 +2,7 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { reducer as itemsReducer } from './slices/items.slice';
 import { 
   useSelector as selectorHook,
-  type TypedUseSelectorHook, 
-  type useDispatch as dispatchHook} from 'react-redux';
+  type TypedUseSelectorHook, } from 'react-redux';
 
 
 export const rootReducer = combineReducers({

@@ -1,59 +1,43 @@
 // store/itemsSlice.ts
 import { createSlice } from '@reduxjs/toolkit';
+import type { TItemConfig } from '../../utils/types';
 import { getItems } from '../Async/items';
-import type { TItemRank, TItemType } from '../../utils/types';
-
-export interface INameGuns  {
-  args: [],
-  key: string,
-  lines: {
-    ru: string,
-    en: string,
-    es: string,
-    fr: string
-  }
-}
-
-export interface INameArtefacts {
-  args: [],
-  key: string,
-  lines: {
-      ru: string,
-      en: string,
-      es: string,
-      fr: string
-  }
-}
-
-export type TItemGun = {
-  category: TItemType,
-  color: TItemRank,
-  id: string,
-  infoBlocks: [],
-  name: INameGuns,
-  status: []
-};
-
-export type TItemArtefact = {};
-
-export type TItemArmor = {
-  id: string;
-  name: string;
-  color: string;
-  type: TItemType;
-};
 
 export interface IAllItems {
-  guns: TItemGun[];
-  armors: TItemArmor[];
-  artefacts: TItemArtefact[];
+  weapons: TItemConfig[];
+  armors: TItemConfig[];
+  artefacts: TItemConfig[];
+  bullet: TItemConfig[];
+  other: TItemConfig[];
+  misc: TItemConfig[];
+  medicine: TItemConfig[];
+  grenade: TItemConfig[];
+  food: TItemConfig[];
+  attachment: TItemConfig[];
+  backpacks: TItemConfig[];
+  containers: TItemConfig[];
+  drink: TItemConfig[];
+  weapon_skins: TItemConfig[];
+  armor_skins: TItemConfig[];
   loading: boolean;
 }
 
-export const initialState: IAllItems = {
-  guns: [],
+const initialState: IAllItems = {
+  weapons: [],
   armors: [],
   artefacts: [],
+  bullet: [],
+  other: [],
+  misc: [],
+  medicine: [],
+  grenade: [],
+  food: [],
+  attachment: [],
+  backpacks: [],
+  containers: [],
+  drink: [],
+  weapon_skins: [],
+  armor_skins: [],
   loading: false,
 };
 
@@ -66,17 +50,36 @@ const itemsSlice = createSlice({
       .addCase(getItems.pending, (state) => {
         state.loading = true;
       })
-      .addCase(getItems.fulfilled, (state, action) => {        
-        state.guns.push(...action.payload);
+      .addCase(getItems.fulfilled, (state, action) => {
+        // Разделяем по категориям
+        state.weapons = action.payload.weapons || [];
+        state.armors = action.payload.armor || [];
+        state.artefacts = action.payload.artefacts || [];
+        state.weapon_skins = action.payload.weaponSkins || [];
+        state.bullet = action.payload.bullet || [];
+        state.other = action.payload.other || [];
+        state.misc = action.payload.misc || [];
+        state.medicine = action.payload.medicine || [];
+        state.grenade = action.payload.grenade || [];
+        state.food = action.payload.food || [];
+        state.attachment = action.payload.attachment || [];
+        state.backpacks = action.payload.backpacks || [];
+        state.containers = action.payload.containers || [];
+        state.drink = action.payload.drink || [];
+        state.armor_skins = action.payload.armor_skins || [];
+        state.loading = false;
+      })
+      .addCase(getItems.rejected, (state) => {
         state.loading = false;
       });
   },
-  selectors: {
-    getAllGuns: (state) => state.guns,
-    isLoading: (state) => state.loading
-  }
 });
 
-export const { reducer } = itemsSlice;
-export const { getAllGuns, isLoading } = itemsSlice.selectors;
-export default itemsSlice.reducer;
+// Селекторы отдельно
+export const selectAllGuns = (state: { items: IAllItems }) => state.items.weapons;
+export const selectAllArmors = (state: { items: IAllItems }) => state.items.armors;
+export const selectAllArtefacts = (state: { items: IAllItems }) => state.items.artefacts;
+export const selectItemsLoading = (state: { items: IAllItems }) => state.items.loading;
+export const selectAllItems = (state: {items: IAllItems}) => state.items
+
+export const {reducer} = itemsSlice
