@@ -58,7 +58,6 @@ export const BASE_CATEGORIES = {
   drink: "https://api.github.com/repos/EXBO-Studio/stalcraft-database/contents/ru/items/drink/",
   weapon_skins: "https://api.github.com/repos/EXBO-Studio/stalcraft-database/contents/ru/items/weapon_style/skins/",
   armor_skins: "https://api.github.com/repos/EXBO-Studio/stalcraft-database/contents/ru/items/armor_style/skins/",
-  artefact: "https://api.github.com/repos/EXBO-Studio/stalcraft-database/contents/ru/items/artefact/",
 } as const;
 
 export type TSimpleCategory = keyof typeof BASE_CATEGORIES;
@@ -76,6 +75,10 @@ export const ADVANCED_CATEGORIES = {
     base: "https://api.github.com/repos/EXBO-Studio/stalcraft-database/contents/ru/items/weapon_modules/",
     sub: ["weapon_module", "weapon_module_core", "weapon_module_remover"],
   },
+  artefact: {
+    base: "https://api.github.com/repos/EXBO-Studio/stalcraft-database/contents/ru/items/artefact/",
+    sub: ['biochemical', 'electrophysical', 'gravity', 'other_arts', 'thermal']
+  }
 } as const;
 
 export type TAdvancedCategory = keyof typeof ADVANCED_CATEGORIES;
@@ -143,7 +146,6 @@ export async function getItemsByCategory(category: string) {
 
     const results = await Promise.all(allItems.map(i => cachedFetch(i.url)));
 
-    // Формируем итоговый объект с imageUrl
     return results.map((item, index) => {
       const baseItem = allItems[index];
       return {

@@ -3,16 +3,24 @@ import iconBasket from './assets/iconBasket.png';
 import style from './ItemComponent.module.css';
 import ButtonUI from '../ButtonUI/buttonUI';
 import { RANKS_ITEMS, rarityGlowMap, TYPES_ITEMS, type TItemComponent } from '../../../utils/types';
+import type { AppDispatch } from '../../../service/store';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 
 const ItemComponentUI = ({
   rarity,
   price,
   name,
   type,
-  image
+  image,
+  subCategory
 }: TItemComponent) => {
   console.log(type);
+  const dispatch: AppDispatch = useDispatch();
+  useEffect(() => {
+    console.log(subCategory);
 
+  }, [dispatch])
   return (
     <section className={clsx(style.itemCard, style[rarityGlowMap[rarity]])}>
       <div
@@ -23,11 +31,11 @@ const ItemComponentUI = ({
       >
         <div className={style.weaponHeader}>
           {name && <h3>{name}</h3>}
-          <p className={clsx(style[`${rarityGlowMap[rarity]}Text`])}>{TYPES_ITEMS[type] ?? 'Неизвестно'}</p>
+          <p className={clsx(style[`${rarityGlowMap[rarity]}Text`])}>{subCategory ? (TYPES_ITEMS[subCategory] ?? 'Неизвестно') : (TYPES_ITEMS[type] ?? 'Неизвестно')}</p>
         </div>
         <div className={style.weaponFooter}>
           <span className={style.weaponPrice}>{price}</span>
-          <span className={style.weaponRarity}>Ранг: {RANKS_ITEMS[rarity as keyof typeof RANKS_ITEMS] ?? 'Неизвестно'}</span>
+          <span className={style.weaponRarity}>Ранг: {RANKS_ITEMS[rarity] ?? 'Неизвестно'}</span>
         </div>
       </div>
       <ButtonUI btnText="Перейти" img={iconBasket} />

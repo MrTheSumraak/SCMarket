@@ -5,7 +5,28 @@ export const TYPES_ITEMS = {
     'machine_gun': 'Пулеметы',
     'shotgun_rifle': 'Дробовики',
     'sniper_rifle': 'Снайперские винтовки',
-    'submachine_gun': 'Пистолеты-пулеметы'
+    'submachine_gun': 'Пистолеты-пулеметы',
+    'biochemical': 'Биохимические',
+    'electrophysical' : 'Электрофизические',
+    'gravity': 'Гравитационные',
+    'thermal': 'Термические',
+    'other_arts': 'Прочее',
+    'bullet': 'Патроны',
+    'other': 'Другое',
+    'misc': 'Разное',
+    'medicine': 'Медицина',
+    'grenade': 'Гранаты',
+    'food': 'Еда',
+    'backpacks': 'Рюкзаки',
+    'containers': 'Контейнеры',
+    'drink': 'Напитки',
+    'weapon_skins': 'Облик на оружение',
+    'armor_skins': 'Облик на броню',
+    'combat': 'Боевые',
+    'combined': 'Комбинированные',
+    'scientist': 'Научные',
+    'clothes': 'Одежда',
+    'device': 'Устройства'
 } as const;
 
 export type TItemType = keyof typeof TYPES_ITEMS;
@@ -16,7 +37,8 @@ export const RANKS_ITEMS = {
     'RANK_MASTER': 'Мастер',
     'DEFAULT': 'Отмычка',
     'RANK_LEGEND': 'Легендарный',
-    'RANK_NEWBIE': 'Новичок'
+    'RANK_NEWBIE': 'Новичок',
+    'QUEST_ITEM': 'Квестовый предмет'
 }
 
 export type TItemRank = keyof typeof RANKS_ITEMS;
@@ -25,6 +47,7 @@ export type TItemRank = keyof typeof RANKS_ITEMS;
 export type TItemConfig = {
 image: string
   category: TItemType,
+  subCategory?: TItemType,
   color: TItemRank,
   id: string,
   infoBlocks: [],
@@ -52,7 +75,7 @@ export type TItemComponent = {
   type: TItemType;
   image: string;
   category: string;      // основная категория (weapons, armors…)
-  subCategory?: string;  // подкатегория, если есть
+  subCategory?: TItemType;  // подкатегория, если есть
   url?: string;
 };
 

@@ -39,7 +39,8 @@ export const Auction = () => {
                                     name={item.name.lines.ru}
                                     type={item.category}
                                     category={categoryName}
-                                    image={item.image} />
+                                    image={item.image}
+                                    subCategory={item.subCategory} />
                             ));
                         })}
                     </div>
