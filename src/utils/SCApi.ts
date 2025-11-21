@@ -56,8 +56,8 @@ export const BASE_CATEGORIES = {
   backpacks: "https://api.github.com/repos/EXBO-Studio/stalcraft-database/contents/ru/items/backpacks/",
   containers: "https://api.github.com/repos/EXBO-Studio/stalcraft-database/contents/ru/items/containers/",
   drink: "https://api.github.com/repos/EXBO-Studio/stalcraft-database/contents/ru/items/drink/",
-  weapon_skins: "https://api.github.com/repos/EXBO-Studio/stalcraft-database/contents/ru/items/weapon_style/skins/",
-  armor_skins: "https://api.github.com/repos/EXBO-Studio/stalcraft-database/contents/ru/items/armor_style/skins/",
+  "weapon_style/skins": "https://api.github.com/repos/EXBO-Studio/stalcraft-database/contents/ru/items/weapon_style/skins/",
+  "armor_style/skins": "https://api.github.com/repos/EXBO-Studio/stalcraft-database/contents/ru/items/armor_style/skins/",
 } as const;
 
 export type TSimpleCategory = keyof typeof BASE_CATEGORIES;
@@ -136,14 +136,17 @@ export async function getItemsByCategory(category: string) {
       allItems = allItems.concat(items);
     } else if (category in ADVANCED_CATEGORIES) {
       const conf = ADVANCED_CATEGORIES[category as TAdvancedCategory];
-      for (const sub of conf.sub) {
-        const items = await loadAdvancedCategory(conf.base, sub, category);
-        allItems = allItems.concat(items);
-      }
+
+      // Параллельная загрузка подкатегорий
+      const subResults = await Promise.all(
+        conf.sub.map(sub => loadAdvancedCategory(conf.base, sub, category))
+      );
+      allItems = subResults.flat();
     } else {
       throw new Error(`Unknown category: ${category}`);
     }
 
+    // Параллельная загрузка всех файлов JSON
     const results = await Promise.all(allItems.map(i => cachedFetch(i.url)));
 
     return results.map((item, index) => {
@@ -160,3 +163,4 @@ export async function getItemsByCategory(category: string) {
     return [];
   }
 }
+

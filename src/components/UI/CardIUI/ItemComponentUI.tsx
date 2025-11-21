@@ -3,9 +3,7 @@ import iconBasket from './assets/iconBasket.png';
 import style from './ItemComponent.module.css';
 import ButtonUI from '../ButtonUI/buttonUI';
 import { RANKS_ITEMS, rarityGlowMap, TYPES_ITEMS, type TItemComponent } from '../../../utils/types';
-import type { AppDispatch } from '../../../service/store';
-import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+
 
 const ItemComponentUI = ({
   rarity,
@@ -15,12 +13,6 @@ const ItemComponentUI = ({
   image,
   subCategory
 }: TItemComponent) => {
-  console.log(type);
-  const dispatch: AppDispatch = useDispatch();
-  useEffect(() => {
-    console.log(subCategory);
-
-  }, [dispatch])
   return (
     <section className={clsx(style.itemCard, style[rarityGlowMap[rarity]])}>
       <div

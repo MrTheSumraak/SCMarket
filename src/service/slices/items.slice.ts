@@ -53,7 +53,7 @@ const itemsSlice = createSlice({
       .addCase(getItems.fulfilled, (state, action) => {
         // Разделяем по категориям
         state.weapons = action.payload.weapons || [];
-        state.armors = action.payload.armor || [];
+        state.armors = action.payload.armors || [];
         state.artefacts = action.payload.artefacts || [];
         state.weapon_skins = action.payload.weaponSkins || [];
         state.bullet = action.payload.bullet || [];
