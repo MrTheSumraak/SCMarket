@@ -127,6 +127,33 @@ async function loadAdvancedCategory(base: string, sub: string, category: string)
 //----------------------------------------------------
 // PUBLIC API
 //----------------------------------------------------
+//----------------------------------------------------
+// HELPERS
+//----------------------------------------------------
+async function batchFetch<T>(urls: string[], batchSize = 5): Promise<T[]> {
+  const results: T[] = [];
+
+  for (let i = 0; i < urls.length; i += batchSize) {
+    const batch = urls.slice(i, i + batchSize);
+    const batchResults = await Promise.all(
+      batch.map(async url => {
+        try {
+          return await cachedFetch(url);
+        } catch (e) {
+          console.warn('Не удалось загрузить URL:', url, e);
+          return null; // Возвращаем null, чтобы не прерывать весь процесс
+        }
+      })
+    );
+    results.push(...batchResults);
+  }
+
+  return results.filter(r => r !== null) as T[];
+}
+
+//----------------------------------------------------
+// PUBLIC API
+//----------------------------------------------------
 export async function getItemsByCategory(category: string) {
   try {
     let allItems: any[] = [];
@@ -138,16 +165,16 @@ export async function getItemsByCategory(category: string) {
       const conf = ADVANCED_CATEGORIES[category as TAdvancedCategory];
 
       // Параллельная загрузка подкатегорий
-      const subResults = await Promise.all(
-        conf.sub.map(sub => loadAdvancedCategory(conf.base, sub, category))
-      );
-      allItems = subResults.flat();
+      for (const sub of conf.sub) {
+        const subItems = await loadAdvancedCategory(conf.base, sub, category);
+        allItems = allItems.concat(subItems);
+      }
     } else {
       throw new Error(`Unknown category: ${category}`);
     }
 
-    // Параллельная загрузка всех файлов JSON
-    const results = await Promise.all(allItems.map(i => cachedFetch(i.url)));
+    // Batch-загрузка всех файлов JSON с ограничением одновременных запросов
+    const results = await batchFetch<any>(allItems.map(i => i.url), 5); // 5 одновременных запросов
 
     return results.map((item, index) => {
       const baseItem = allItems[index];
@@ -163,4 +190,3 @@ export async function getItemsByCategory(category: string) {
     return [];
   }
 }
-

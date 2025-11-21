@@ -19,27 +19,54 @@ export interface IAllItems {
   drink: TItemConfig[];
   weapon_skins: TItemConfig[];
   armor_skins: TItemConfig[];
-  loading: boolean;
+  weapon_modules: TItemConfig[];
+  loading?: boolean;
+}
+
+// Функция для безопасной загрузки из localStorage
+function loadItemsFromStorage(): IAllItems {
+  try {
+    const stored = localStorage.getItem('ITEMS');
+    if (stored) {
+      const parsed = JSON.parse(stored) as IAllItems;
+      // Проверка, что хотя бы один массив непустой
+      if (Object.values(parsed).some(arr => Array.isArray(arr) && arr.length > 0)) {
+        return parsed;
+      }
+    }
+  } catch {
+    // Если JSON битый, игнорируем
+  }
+
+  // Пустая структура
+  return {
+    weapons: [],
+    armors: [],
+    artefacts: [],
+    bullet: [],
+    other: [],
+    misc: [],
+    medicine: [],
+    grenade: [],
+    food: [],
+    attachment: [],
+    backpacks: [],
+    containers: [],
+    drink: [],
+    weapon_skins: [],
+    armor_skins: [],
+    weapon_modules: [],
+    loading: false,
+  };
 }
 
 const initialState: IAllItems = {
-  weapons: [],
-  armors: [],
-  artefacts: [],
-  bullet: [],
-  other: [],
-  misc: [],
-  medicine: [],
-  grenade: [],
-  food: [],
-  attachment: [],
-  backpacks: [],
-  containers: [],
-  drink: [],
-  weapon_skins: [],
-  armor_skins: [],
+  weapons: [], armors: [], artefacts: [], bullet: [], other: [], misc: [],
+  medicine: [], grenade: [], food: [], attachment: [], backpacks: [],
+  containers: [], drink: [], weapon_skins: [], armor_skins: [], weapon_modules: [],
   loading: false,
 };
+
 
 const itemsSlice = createSlice({
   name: 'items',
@@ -51,35 +78,21 @@ const itemsSlice = createSlice({
         state.loading = true;
       })
       .addCase(getItems.fulfilled, (state, action) => {
-        // Разделяем по категориям
-        state.weapons = action.payload.weapons || [];
-        state.armors = action.payload.armors || [];
-        state.artefacts = action.payload.artefacts || [];
-        state.weapon_skins = action.payload.weaponSkins || [];
-        state.bullet = action.payload.bullet || [];
-        state.other = action.payload.other || [];
-        state.misc = action.payload.misc || [];
-        state.medicine = action.payload.medicine || [];
-        state.grenade = action.payload.grenade || [];
-        state.food = action.payload.food || [];
-        state.attachment = action.payload.attachment || [];
-        state.backpacks = action.payload.backpacks || [];
-        state.containers = action.payload.containers || [];
-        state.drink = action.payload.drink || [];
-        state.armor_skins = action.payload.armor_skins || [];
+        Object.assign(state, action.payload); // Переносим все поля
         state.loading = false;
       })
-      .addCase(getItems.rejected, (state) => {
+      .addCase(getItems.rejected, (state, action) => {
+        console.error('Ошибка загрузки предметов:', action.payload);
         state.loading = false;
       });
   },
 });
 
-// Селекторы отдельно
+// Селекторы
 export const selectAllGuns = (state: { items: IAllItems }) => state.items.weapons;
 export const selectAllArmors = (state: { items: IAllItems }) => state.items.armors;
 export const selectAllArtefacts = (state: { items: IAllItems }) => state.items.artefacts;
 export const selectItemsLoading = (state: { items: IAllItems }) => state.items.loading;
-export const selectAllItems = (state: {items: IAllItems}) => state.items
+export const selectAllItems = (state: { items: IAllItems }) => state.items;
 
-export const {reducer} = itemsSlice
+export const { reducer } = itemsSlice;
