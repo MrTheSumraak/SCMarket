@@ -27,3 +27,12 @@
 .containerBody{
     margin-block-start: 100px;
 }
+
+.containerPaginator button{
+    background-color: white !important;
+}
+
+
+.containerPaginator{
+    margin-block-end: 35px;
+}

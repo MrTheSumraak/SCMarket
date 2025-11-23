@@ -24,41 +24,7 @@ export interface IAllItems {
 }
 
 // Функция для безопасной загрузки из localStorage
-function loadItemsFromStorage(): IAllItems {
-  try {
-    const stored = localStorage.getItem('ITEMS');
-    if (stored) {
-      const parsed = JSON.parse(stored) as IAllItems;
-      // Проверка, что хотя бы один массив непустой
-      if (Object.values(parsed).some(arr => Array.isArray(arr) && arr.length > 0)) {
-        return parsed;
-      }
-    }
-  } catch {
-    // Если JSON битый, игнорируем
-  }
 
-  // Пустая структура
-  return {
-    weapons: [],
-    armors: [],
-    artefacts: [],
-    bullet: [],
-    other: [],
-    misc: [],
-    medicine: [],
-    grenade: [],
-    food: [],
-    attachment: [],
-    backpacks: [],
-    containers: [],
-    drink: [],
-    weapon_skins: [],
-    armor_skins: [],
-    weapon_modules: [],
-    loading: false,
-  };
-}
 
 const initialState: IAllItems = {
   weapons: [], armors: [], artefacts: [], bullet: [], other: [], misc: [],
