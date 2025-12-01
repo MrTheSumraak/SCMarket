@@ -32,6 +32,10 @@
     background-color: white !important;
 }
 
+.containerPaginator a:hover{
+    background-color: rgb(137, 137, 137) !important;
+    border-radius: inherit;
+}
 
 .containerPaginator{
     margin-block-end: 35px;

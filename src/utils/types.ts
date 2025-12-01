@@ -44,13 +44,31 @@ export const RANKS_ITEMS = {
 export type TItemRank = keyof typeof RANKS_ITEMS;
 
 
+export interface IItemInfoBlock {
+  type: string,
+  title: [],
+  text: ITextInfo
+}
+
+export interface ITextInfo {
+  type: string,
+  key: string,
+  args: any[],
+  lines: {
+    ru: string,
+    en: string, 
+    es: string, 
+    fr: string
+  }
+}
+
 export type TItemConfig = {
-image: string
+  image: string
   category: TItemType,
   subCategory?: TItemType,
   color: TItemRank,
   id: string,
-  infoBlocks: [],
+  infoBlocks: IItemInfoBlock[] | string,
   name: INameItems,
   status: []
 }
@@ -66,11 +84,11 @@ export interface INameItems  {
   }
 }
 
-
 export type TItemComponent = {
   id: string;
   rarity: TItemRank;
   price: string | number;
+  description: IItemInfoBlock[] | string | undefined;
   name?: string;
   type: TItemType;
   image: string;

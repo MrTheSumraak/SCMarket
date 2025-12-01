@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@ant-design/icons": "^6.1.0",
     "@reduxjs/toolkit": "^2.9.2",
     "antd": "^5.28.1",
     "clsx": "^2.1.1",

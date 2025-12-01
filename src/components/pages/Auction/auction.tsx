@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { use, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import type { AppDispatch } from "../../../service/store";
 import { Navigation } from "../../Navigation/navigation";
@@ -59,6 +59,7 @@ export const Auction = () => {
                                     category={item.categoryName}
                                     image={item.image}
                                     subCategory={item.subCategory}
+                                    description={item.infoBlocks}
                                 />
                             ))}
                         </div>
