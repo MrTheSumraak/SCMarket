@@ -1,0 +1,107 @@
+.container {
+  background-image: url('../../../assets/background.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* ← фиксирует фон */
+  min-height: 100vh;
+  padding-block-end: 50px;
+}
+
+.cardContainer {
+  display: flex;
+  margin-block-start: 50px;
+  margin-inline: auto;
+  gap: 50px;
+}
+
+.cardContainer img {
+  width: 250px;
+  height: max-content;
+}
+
+.imageContainer {
+  min-width: 800px;
+  height: 500px;
+  background-color: #13161eb3;
+  border: 2px solid #13161e;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cardInfo {
+  width: 530px;
+}
+
+.containerTags {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.containerTags div {
+  min-width: 370px;
+  margin-block-start: 30px;
+  height: 75px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.containerTags pre {
+  color: #adaeaf;
+}
+
+.containerTags div:last-child {
+  border-left: 1px solid rgba(255, 255, 255, 0.32);
+  padding-inline-start: 18px;
+}
+
+.descriptionItem {
+  margin-block: 30px 10px;
+}
+
+.rootContainer {
+  display: flex;
+  justify-content: center;
+  min-width: 100%;
+  padding-block: 109.7px 50px;
+}
+
+.chartContainer {
+  width: 100%;
+  height: 350px;
+  margin-top: 20px;
+}
+
+.recContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-block-start: 30px;
+}
+
+.statsContainer {
+  width: 800px;
+}
+
+.HistoryTable {
+  min-width: 800px;
+  width: max-content;
+  max-width: 100vw;
+  margin-inline: auto;
+  margin-block-start: 50px;
+}
+.HistoryTable h1 {
+  margin-block-end: 20px;
+}
+
+.activeLotsHeader {
+  margin-block-end: 20px;
+}
+
+.statsHeader {
+  margin-block: 50px 20px;
+}

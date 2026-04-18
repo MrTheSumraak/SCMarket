@@ -1,0 +1,16 @@
+.alertContainer {
+  margin-block-start: 30px;
+}
+
+.alertContainer pre {
+  margin-block-end: 10px;
+}
+
+.alertContainer input {
+  width: 580px;
+}
+
+.formContainer {
+  display: flex;
+  justify-content: space-between;
+}

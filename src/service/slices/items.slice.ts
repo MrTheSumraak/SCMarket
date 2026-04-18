@@ -1,64 +1,34 @@
-// store/itemsSlice.ts
 import { createSlice } from '@reduxjs/toolkit';
-import type { TItemConfig } from '../../utils/types';
-import { getItems } from '../Async/items';
+import type { IItems } from '../../utils/types';
 
-export interface IAllItems {
-  weapons: TItemConfig[];
-  armors: TItemConfig[];
-  artefacts: TItemConfig[];
-  bullet: TItemConfig[];
-  other: TItemConfig[];
-  misc: TItemConfig[];
-  medicine: TItemConfig[];
-  grenade: TItemConfig[];
-  food: TItemConfig[];
-  attachment: TItemConfig[];
-  backpacks: TItemConfig[];
-  containers: TItemConfig[];
-  drink: TItemConfig[];
-  weapon_skins: TItemConfig[];
-  armor_skins: TItemConfig[];
-  weapon_modules: TItemConfig[];
-  loading?: boolean;
+export interface IAuctionState {
+  isLoading: boolean;
+  items: IItems[] | null;
 }
-
-// Функция для безопасной загрузки из localStorage
-
-
-const initialState: IAllItems = {
-  weapons: [], armors: [], artefacts: [], bullet: [], other: [], misc: [],
-  medicine: [], grenade: [], food: [], attachment: [], backpacks: [],
-  containers: [], drink: [], weapon_skins: [], armor_skins: [], weapon_modules: [],
-  loading: false,
+const initialState: IAuctionState = {
+  isLoading: true,
+  items: null,
 };
 
-
-const itemsSlice = createSlice({
-  name: 'items',
+const auctionSlice = createSlice({
+  name: 'auction',
   initialState,
-  reducers: {},
+  reducers: {
+    enableLoading: (state) => {
+      state.isLoading = true;
+    },
+    disableLoading: (state) => {
+      state.isLoading = false;
+    },
+  },
   extraReducers: (builder) => {
-    builder
-      .addCase(getItems.pending, (state) => {
-        state.loading = true;
-      })
-      .addCase(getItems.fulfilled, (state, action) => {
-        Object.assign(state, action.payload); // Переносим все поля
-        state.loading = false;
-      })
-      .addCase(getItems.rejected, (state, action) => {
-        console.error('Ошибка загрузки предметов:', action.payload);
-        state.loading = false;
-      });
+    builder;
+  },
+  selectors: {
+    isLoadingAuction: (state) => state.isLoading,
   },
 });
 
-// Селекторы
-export const selectAllGuns = (state: { items: IAllItems }) => state.items.weapons;
-export const selectAllArmors = (state: { items: IAllItems }) => state.items.armors;
-export const selectAllArtefacts = (state: { items: IAllItems }) => state.items.artefacts;
-export const selectItemsLoading = (state: { items: IAllItems }) => state.items.loading;
-export const selectAllItems = (state: { items: IAllItems }) => state.items;
-
-export const { reducer } = itemsSlice;
+export const { reducer } = auctionSlice;
+export const { isLoadingAuction } = auctionSlice.selectors;
+export const { enableLoading, disableLoading } = auctionSlice.actions;

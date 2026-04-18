@@ -1,0 +1,40 @@
+.containerHeader {
+  display: flex;
+  justify-content: space-between;
+  padding-inline: 50px;
+  padding-block-start: 20px;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+}
+
+.containerHeader h1 {
+  font-size: 24px;
+}
+
+.containerHeader h1 span {
+  color: #3557c8;
+}
+
+.containerList ul {
+  margin-inline-end: 30px;
+}
+
+.containerHeader ul li {
+  display: inline-block;
+  padding-inline: 10px;
+}
+
+.containerList {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.containerList ul li a {
+  color: white;
+}
+
+.profileButton {
+  border-radius: 5px;
+}

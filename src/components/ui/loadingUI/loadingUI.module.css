@@ -1,0 +1,52 @@
+.logo span{
+    color: #3557C8;
+}
+
+.logo {
+    position: relative;
+    font-family: 'Orbitron';
+    font-size: 50px;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content; 
+}
+
+.logo::after {
+    content: '';
+    position: absolute;
+    inset: 0; 
+    background-color: #3557C8;
+    z-index: 1;
+    filter: blur(30px); 
+    opacity: 0.08;
+    border-radius: 29px;
+}
+
+.containerLoading {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: max-content;
+    height: max-content;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.loadingText {
+    transition: opacity 0.5s ease;
+    opacity: 1;
+}
+
+.fadeIn {
+    opacity: 1;
+}
+
+.fadeOut {
+    opacity: 0;
+}

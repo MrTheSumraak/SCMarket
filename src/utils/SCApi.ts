@@ -1,73 +1,93 @@
-//----------------------------------------------------
-// AUTO-LOADER FOR LOCAL ITEM FILES (VITE)
-//----------------------------------------------------
+import type {
+  IAccessAuth,
+  IAnalyticsItem,
+  IHistoryResponse,
+  IRefreshToken,
+  ITokensUser,
+  ITokenUser,
+  IUser,
+} from './types';
 
-// Загружаем *карты путей*, а НЕ сами файлы
-const jsonMap = import.meta.glob(
-  "/src/utils/itemBase/global/items/**/*.json"
-);
+const UrlToken = 'https://exbo.net/oauth/token';
 
-const iconMap = import.meta.glob(
-  "/src/utils/itemBase/global/icons/**/*.png",
-  { query: "?url", import: "default" }
-);
+const SCMarketServer = 'http://localhost:3000';
 
-//----------------------------------------------------
-// HELPERS FILE READS
-//----------------------------------------------------
+export const getUserTokens = async ({ code }: ITokensUser): Promise<ITokenUser> => {
+  const response = await fetch(`${SCMarketServer}/users/getTokens`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ token: code }),
+  });
 
-function buildIconPath(category: string, sub: string | undefined, id: string) {
-  return (
-    `/src/utils/itemBase/global/icons/${category}` +
-    (sub ? `/${sub}` : "") +
-    `/${id}.png`
-  );
-}
+  return await response.json();
+};
 
-function parsePath(path: string) {
-  const rel = path.replace("/src/utils/itemBase/global/items/", "");
-  const parts = rel.split("/");
+export const refreshToken = async (data: IRefreshToken): Promise<IAccessAuth> => {
+  const response = await fetch(UrlToken, {
+    method: 'POST',
+    headers: {},
+    body: JSON.stringify(data),
+  });
 
-  const category = parts[0];
-  const subCategory = parts.length === 3 ? parts[1] : undefined;
-  const fileName = parts.at(-1)!.replace(".json", "");
+  return await response.json();
+};
 
-  return { category, subCategory, fileName };
-}
+export const getUserDataAsync = async (data: ITokenUser): Promise<IUser> => {
+  const response = await fetch(`${SCMarketServer}/users/getUser`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ access_token: data.access_token, refresh_token: data.refresh_token }),
+  });
 
-//----------------------------------------------------
-// READ FILE ON SETTING FILES
-//----------------------------------------------------
+  console.log('async job api');
 
-export async function getItemsByCategory(category: string) {
-  const items: any[] = [];
+  return await response.json();
+};
+//Получение всех объектов
+// export async function getItems() {
+//   const response = await fetch(urlItems, {
+//     method: 'GET',
+//     headers: {
+//       'Content-Type': 'application/json;charset=utf-8'
+//     }
+//   });
+//   return response;
+// }
 
-  for (const path in jsonMap) {
-    if (!path.includes(`/${category}/`)) continue;
+export const getAnalyticsItem = async (item: string): Promise<IAnalyticsItem> => {
+  console.log('Analytics item: ' + item);
+  const response = await fetch(`${SCMarketServer}/analytics/getAnalyticsItems`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ itemid: item }),
+  });
 
-    const { subCategory, fileName: id } = parsePath(path);
+  const data = await response.json();
 
-    // Загружаем JSON-модуль
-  const module = await jsonMap[path]() as { default: any };
-  const itemData = module.default;
+  return {
+    buy_price_min: data.buy.min,
+    buy_price_max: data.buy.max,
+    sell_price_min: data.sell.min,
+    sell_price_max: data.sell.max,
+    countItem: data.countItem,
+  };
+};
 
+export const getHistoryItem = async (item: string): Promise<IHistoryResponse> => {
+  console.log('Loading SC:Api history item: ' + item);
+  const response = await fetch(`${SCMarketServer}/analytics/getAnalyticsHistoryItem`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ itemid: item }),
+  });
 
-    // Ищем PNG
-    const iconPath = buildIconPath(category, subCategory, id);
-
-    let image = null;
-    if (iconMap[iconPath]) {
-      image = await iconMap[iconPath]();
-    }
-
-    items.push({
-      ...itemData,   // теперь это чистый объект
-      id,
-      category,
-      subCategory,
-      image,
-    });
-  }
-
-  return items;
-}
+  return await response.json();
+};

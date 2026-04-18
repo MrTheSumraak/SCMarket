@@ -1,0 +1,32 @@
+.button {
+   text-align: center;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+
+   width: clamp(90px, 6.61vw, 127px); /* 127px */
+   /* height: 19px; */
+   padding-block: clamp(2px, 0.234vw, 4.5px); /* 4.5px */
+
+   background-color: #3557C8;
+
+   font-size: clamp(5px, 1.42vw, 8px); /* 8px */
+   color: #fff;
+}
+
+.buttonContent {
+   display: flex;
+   flex-direction: row;
+   column-gap: clamp(1px, 0.104vw, 2px); /* 2px */
+   width: clamp(30px, 2.60vw, 50px);  /* 50px */
+}
+
+.buttonText {
+   padding-block-start: clamp(0.5px, 1.052vw, 1px); /* 1px */
+}
+
+.iconBasket {
+   width: clamp(6px, 0.62vw, 10px); /* 10px */
+   height: clamp(6px, 0.62vw, 10px);/* 10px */
+}

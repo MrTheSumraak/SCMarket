@@ -1,12 +1,13 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import { reducer as itemsReducer } from './slices/items.slice';
-import { 
-  useSelector as selectorHook,
-  type TypedUseSelectorHook, } from 'react-redux';
+import { reducer as AuthReducer } from './slices/auth.slice';
+import {reducer as UserReducer} from './slices/user.slice';
+import {reducer as AuctionReducer} from './slices/items.slice';
 
 
 export const rootReducer = combineReducers({
-  items: itemsReducer,
+  auth: AuthReducer,
+  user: UserReducer,
+  auction: AuctionReducer
 });
 
 const store = configureStore({
@@ -16,6 +17,5 @@ const store = configureStore({
 export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState>;
 
-export const useSelector: TypedUseSelectorHook<RootState> = selectorHook;
 
 export default store;

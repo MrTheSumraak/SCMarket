@@ -1,0 +1,23 @@
+.horizontalContainer {
+  display: flex;
+  align-items: center;
+  gap: 182px;
+  background-color: #141721;
+  padding-block: 20px;
+  padding-inline: 40px;
+  margin-block: 128px;
+  stroke: 2px solid #22252f;
+}
+
+.inputField {
+  max-width: 311px;
+  height: 40px;
+  background-color: #1d2335;
+  stroke: #22293d;
+  border: none;
+  color: white;
+}
+
+.inputField:hover {
+  background-color: #44537f;
+}

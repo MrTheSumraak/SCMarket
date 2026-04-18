@@ -1,0 +1,17 @@
+.containerInventory {
+}
+.containerItems {
+  background-color: #171a1fff;
+  width: 84.3vw;
+  min-height: 1000px;
+  margin-block-start: 20px;
+  border-radius: 5px;
+}
+
+.rowItems {
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  flex-wrap: wrap;
+}
