@@ -39,11 +39,11 @@ for (let i = 0; i < 30; i++) {
     <InventoryItem
       id="1"
       imgURL={urlImage}
-      rarity="RANK_STALKER"
+      rarity="RANK_NEWBIE"
       price="1 999 999"
       name="AWP"
       model="Dragon Lor"
-      type="weapon_skins"
+      type="sniper_rifle"
       quantity="1"
     />,
   );

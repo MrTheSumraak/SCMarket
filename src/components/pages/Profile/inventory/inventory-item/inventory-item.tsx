@@ -50,14 +50,14 @@ const InventoryItem = ({
   return (
     <li
       className="
-        group
+        group relative
         flex flex-col rounded-xl overflow-hidden w-full
         transition-all duration-500
         ease-[cubic-bezier(0.16,1,0.3,1)]
         hover:scale-[1.03]
         hover:shadow-[0_8px_30px_rgba(0,0,0,0.25)]
         will-change-transform
-    "
+        "
     >
       <NavLink to={`/profile/inventory/${id}`}>
         <div className="w-full">
@@ -96,7 +96,7 @@ const InventoryItem = ({
           </div>
 
           <div className="flex flex-row items-center justify-between">
-            <span className="text-[clamp(0.75rem,1.041vw,1.25rem)] font-bold">{price} ₽</span>
+            <span className="text-[clamp(0.35rem,1.041vw,1.25rem)] font-bold">{price} ₽</span>
             <span className="text-[clamp(0.45rem,0.625vw,0.75rem)] text-[#BDC1CAFF] uppercase">
               Кол-во: x{quantity}
             </span>
