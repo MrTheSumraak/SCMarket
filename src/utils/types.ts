@@ -63,7 +63,7 @@ export interface ITextInfo {
 export type TItemConfig = {
   image: string;
   category: TItemType;
-  subCategory?: TItemType;
+  subCategory?: string;
   color: TItemRank;
   id: string;
   infoBlocks: IItemInfoBlock[] | string;

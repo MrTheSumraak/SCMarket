@@ -12,11 +12,11 @@ const FilterTabs = ({ text, value, active, setActive }: IFilterTabs) => {
     <button
       onClick={() => setActive(value)}
       className={clsx(
-        'flex items-center justify-center w-18 text-xs py-5 rounded-full mt-5 bg-[#17191d] group',
+        'flex items-center justify-center text-[clamp(0.3rem,0.625vw,1rem)] py-[clamp(0.3rem,0.625vw,1rem] rounded-full mt-5 bg-[#17191d]',
         active === value && 'bg-accentProfile text-slate-800',
       )}
     >
-      <span className="font-bold text-sm text-center">{text}</span>
+      <span className="font-bold text-center">{text}</span>
     </button>
   );
 };

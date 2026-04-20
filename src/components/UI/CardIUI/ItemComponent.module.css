@@ -1,87 +1,85 @@
 :root {
-  --rarity: #181C27;                           /* основной background */
-  --rarity-common: #3557C8;       /* обычная */
-  --rarity-uncommon: #9F288F;     /* необычная */
-  --rarity-legendary: #fff700;    /* легендарная */
-  --rarity-rare: #9F2828;         /* очень редкая */
+  --rarity: #181c27; /* основной background */
+  --rarity-common: #3557c8; /* обычная */
+  --rarity-uncommon: #9f288f; /* необычная */
+  --rarity-legendary: #fff700; /* легендарная */
+  --rarity-rare: #9f2828; /* очень редкая */
   --rarity-default: #a3a3a3;
   --rarity-newbie: #2d7914;
-   --item-font: 'Montserrat'
+  --item-font: 'Montserrat';
 }
 
 .itemCard {
-   position: relative;
+  position: relative;
 
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   justify-content: center;
-   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
 
-   font-family: var(--item-font, sans-serif);
-   font-weight: 700;
+  font-family: var(--item-font, sans-serif);
+  font-weight: 700;
 
-   width: clamp(100px, 13.42vw, 200px);
-   height: clamp(100px, 13.42vw, 200px);
+  width: clamp(100px, 13.42vw, 200px);
+  height: clamp(100px, 13.42vw, 200px);
 
-   background-color: var(--rarity, #181C27);
-   background-repeat: no-repeat;
-   background-position: center;
-   background-size: cover;
-   backdrop-filter: blur(100px);
-     overflow: hidden;
-
-
+  background-color: var(--rarity, #181c27);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  backdrop-filter: blur(100px);
+  overflow: hidden;
 }
 
 .weaponWrapper {
-   width: 100%;
-   height: clamp(120px, 10.59vw, 165px);
+  width: 100%;
+  height: clamp(120px, 10.59vw, 165px);
 
-   padding-inline-start: clamp(6px, 0.47vw, 9px);;
-   display: flex;
-   flex-direction: column;
-   justify-content: space-between;
+  padding-inline-start: clamp(6px, 0.47vw, 9px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
-   background-position: center;
-   background-repeat: no-repeat;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .weaponHeader {
-   text-transform: uppercase;
+  text-transform: uppercase;
 }
 
 .weaponHeader h3 {
-   font-size: clamp(10px, 1.78vw, 15px);
-   color: #fff;
+  font-size: clamp(10px, 1.78vw, 15px);
+  color: #fff;
 }
 
 .weaponHeader p {
-   font-size: clamp(6px, 0.62vw, 10px);
+  font-size: clamp(6px, 0.62vw, 10px);
 }
 
 .weaponFooter {
-   color: #fff;
-   line-height: 0.8;
-   margin-block-end: clamp(6px, 0.62vw, 10px);
+  color: #fff;
+  line-height: 0.8;
+  margin-block-end: clamp(6px, 0.62vw, 10px);
 }
 
 .weaponPrice {
-   position: relative;
-   display: block;
-   font-size: clamp(10px, 1.78vw, 15px);
+  position: relative;
+  display: block;
+  font-size: clamp(10px, 1.78vw, 15px);
 }
 
 .weaponPrice::after {
-   content: '';
-   display: inline-block;
-   width: clamp(6px, 0.62vw, 10px);
-   height: clamp(6px, 0.62vw, 10px);
-   background-image: url('../CardIUI/assets/iconRub.png');
+  content: '';
+  display: inline-block;
+  width: clamp(6px, 0.62vw, 10px);
+  height: clamp(6px, 0.62vw, 10px);
+  background-image: url('../CardIUI/assets/iconRub.png');
 }
 
 .weaponRarity {
-   font-size: clamp(5px, 1.42vw, 8px);
+  font-size: clamp(5px, 1.42vw, 8px);
 }
 
 .itemCard::before {
@@ -108,71 +106,100 @@
 
 /* Цвета бликов по редкости */
 
-.glowCommon::before, .glowCommon::after {
-  background: radial-gradient(circle at top right, var(--rarity-common, rgba(40,50,159,0.25)) 0%, transparent 150%);
+.glowCommon::before,
+.glowCommon::after {
+  background: radial-gradient(
+    circle at top right,
+    var(--rarity-common, rgba(40, 50, 159, 0.25)) 0%,
+    transparent 150%
+  );
   z-index: -1;
-   color: #3557C8;
+  color: #3557c8;
 }
 
-.glowUnusual::before, .glowUnusual::after {
-  background: radial-gradient(circle at top right, var(--rarity-uncommon, rgba(130,90,200,0.25)) 0%, transparent 150%);
+.glowUnusual::before,
+.glowUnusual::after {
+  background: radial-gradient(
+    circle at top right,
+    var(--rarity-uncommon, rgba(130, 90, 200, 0.25)) 0%,
+    transparent 150%
+  );
   z-index: -1;
-color:#9F288F;
+  color: #9f288f;
 }
 
-.glowLegendary::before, .glowLegendary::after {
-  background: radial-gradient(circle at top right, var(--rarity-legendary, rgba(255, 217, 0, 0.25)) 0%, transparent 150%);
+.glowLegendary::before,
+.glowLegendary::after {
+  background: radial-gradient(
+    circle at top right,
+    var(--rarity-legendary, rgba(255, 217, 0, 0.25)) 0%,
+    transparent 150%
+  );
   z-index: -1;
-   color: #9F9B28;
+  color: #9f9b28;
 }
 
-.glowRare::before, .glowRare::after {
-  background: radial-gradient(circle at top right, var(--rarity-rare, #9F2828) 0%, transparent 150%);
-  color: #9F2828;
+.glowRare::before,
+.glowRare::after {
+  background: radial-gradient(
+    circle at top right,
+    var(--rarity-rare, #9f2828) 0%,
+    transparent 150%
+  );
+  color: #9f2828;
   z-index: -1;
 }
 
-.glowDefault::before, .glowDefault::after {
-   background: radial-gradient(circle at top right, var(--rarity-default, #a3a3a3) 0%, transparent 150%);
-   color: #a3a3a3;
-   z-index: -1;
+.glowDefault::before,
+.glowDefault::after {
+  background: radial-gradient(
+    circle at top right,
+    var(--rarity-default, #a3a3a3) 0%,
+    transparent 150%
+  );
+  color: #a3a3a3;
+  z-index: -1;
 }
 
-.glowNewbie::before, .glowNewbie::after {
-   background: radial-gradient(circle at top right, var(--rarity-newbie, #2d7914) 0%, transparent 150%);
-   color: #2d7914;
-   z-index: -1;
+.glowNewbie::before,
+.glowNewbie::after {
+  background: radial-gradient(
+    circle at top right,
+    var(--rarity-newbie, #2d7914) 0%,
+    transparent 150%
+  );
+  color: #2d7914;
+  z-index: -1;
 }
 
 /*Description text color*/
 
 .glowCommonText {
   z-index: -1;
-   color: #3557C8;
+  color: #3557c8;
 }
 
 .glowUnusualText {
   z-index: -1;
-color:#9F288F;
+  color: #9f288f;
 }
 
 .glowLegendaryText {
   z-index: -1;
-   color: #9F9B28;
+  color: #9f9b28;
 }
 
 .glowRareText {
-  color: #9F2828;
+  color: #9f2828;
   z-index: -1;
 }
 
 .glowDefaultText {
-   color: #a3a3a3;
-   z-index: -1;
+  color: #a3a3a3;
+  z-index: -1;
 }
 
 .glowNewbieText {
-   color: #45a226;
-   z-index: -1;
+  color: #45a226;
+  z-index: -1;
 }
-

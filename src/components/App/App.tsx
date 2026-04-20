@@ -50,9 +50,9 @@ function App() {
           <Route
             path="/auction"
             element={
-              <ProtectedRoute onlyUnAuth="Auth">
-                <Auction />
-              </ProtectedRoute>
+              // <ProtectedRoute onlyUnAuth="Auth">
+              <Auction />
+              // </ProtectedRoute>
             }
           />
           <Route
