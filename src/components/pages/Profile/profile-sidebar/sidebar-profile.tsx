@@ -41,7 +41,7 @@ const SidebarProfile = () => {
   const personID = userData?.id || '';
   return (
     <aside className="flex flex-col justify-between min-h-full max-h-lvh w-[12%] px-base bg-[#17191d] overflow-y-auto qhd:w-[10%]">
-      <div className="flex flex-col mt-4xl qhd:gap-3xl">
+      <div className="flex flex-col gap-base mt-4xl qhd:gap-3xl">
         {/* секция с аватаркой */}
         <div className="flex flex-col items-center">
           <ProfileHeader
@@ -53,7 +53,7 @@ const SidebarProfile = () => {
         </div>
 
         {/* секция со статистикой */}
-        <div className="flex flex-col gap-xs mt-base">
+        <div className="flex flex-col gap-xs ">
           <h5 className="m-0 text-[clamp(0.35rem,0.729vw,0.875rem)] flex-1 text-nowrap qhd:text-lgText">
             Статистика аккаунта
           </h5>
@@ -64,8 +64,10 @@ const SidebarProfile = () => {
           </div>
         </div>
 
+        <pre>ssss</pre>
+
         {/* секция с действиями */}
-        <div className="flex flex-col gap-xs mt-xl qhd:gap-xl">
+        <div className="flex flex-col gap-xs qhd:gap-xl">
           {LINK_VALUES.map((item, index) => (
             <ProfileLinkItem key={index} link={item.link} title={item.title} icon={item.icon} />
           ))}

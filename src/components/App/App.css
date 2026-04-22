@@ -89,6 +89,15 @@ p {
   unicode-bidi: isolate;
 }
 
+pre {
+  display: block;
+  font-family: monospace;
+  unicode-bidi: isolate;
+  white-space: pre;
+  margin-block: 1em 1em;
+  margin-inline: 0px;
+}
+
 button {
   font-family: 'Montserrat', sans-serif;
   letter-spacing: 0.05em;
