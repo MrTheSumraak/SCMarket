@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import FilterTabs from './filter-tabs/filter-tabs';
+import { useCallback, useState } from 'react';
 import InventoryHeader from './inventory-header/inventory-header';
 import InventoryItem from './inventory-item/inventory-item';
 import React from 'react';
+import FilterTabsList from './filter-tabs/filter-tabs-list';
 
 const arrayTabs = [
   {
@@ -50,28 +50,23 @@ for (let i = 0; i < 30; i++) {
 }
 
 const Inventory = () => {
-  const [active, setActive] = useState('all');
+  const [active, setActive] = useState<string>('all');
+
+  const setActiveHandler = useCallback(
+    (value: string) => {
+      setActive(value);
+    },
+    [arrayTabs.length],
+  );
 
   return (
-    <div className="">
+    <div>
       <InventoryHeader />
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-xl">
         <div className="flex flex-row justify-between">
-          <ul className="flex flex-row flex-wrap items-center gap-[clamp(0.2rem,1.25vw,1.5rem)]">
-            {arrayTabs.map((item, index) => (
-              <li>
-                <FilterTabs
-                  key={index}
-                  text={item.text}
-                  value={item.value}
-                  active={active}
-                  setActive={setActive}
-                />
-              </li>
-            ))}
-          </ul>
+          <FilterTabsList arrayTabs={arrayTabs} active={active} setActive={setActiveHandler} />
           {/* сделал тут div, так как возникает конфиликт стилей кнопок, по идеи тут должна быть кнопка */}
-          <div className="flex items-center justify-center text-[clamp(0.375rem,0.94vw,1.125rem)] py-[clamp(0.2rem,0.625vw, 0.75rem)] rounded-full mt-5 hover:text-accentProfile cursor-pointer">
+          <div className="flex items-center justify-center text-[clamp(0.375rem,0.94vw,1.125rem)] py-[clamp(0.2rem,0.625vw, 0.75rem)] rounded-full mt-lg hover:text-accentProfile cursor-pointer">
             <span>Все фильтры</span>
           </div>
         </div>

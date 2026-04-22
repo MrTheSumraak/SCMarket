@@ -73,7 +73,7 @@ const InventoryItem = ({
 
             <span
               className={clsx(
-                'absolute top-2 left-2 px-2 py-1 rounded text-xs uppercase text-white',
+                'absolute top-[clamp(0.2rem,0.416vw,0.5rem)] left-[clamp(0.2rem,0.416vw,0.5rem)] px-[clamp(0.2rem,0.416vw,0.5rem)] py-1 rounded text-xs uppercase text-white',
                 rarityBGMap[rarity],
               )}
             >
@@ -82,13 +82,13 @@ const InventoryItem = ({
           </div>
         </div>
 
-        <div className="w-full bg-[#1E2128FF] flex flex-col gap-2 p-5">
-          <div className="flex flex-col gap-2">
-            <h4 className="text-[clamp(0.45rem,0.625vw,0.75rem)] uppercase">{TYPES_ITEMS[type]}</h4>
+        <div className="w-full bg-[#1E2128FF] flex flex-col gap-[clamp(0.2rem,0.416vw,0.5rem)] p-lg">
+          <div className="flex flex-col gap-[clamp(0.2rem,0.416vw,0.5rem)]">
+            <h4 className="text-[clamp(0.3rem,0.625vw,0.75rem)] uppercase">{TYPES_ITEMS[type]}</h4>
 
-            <div className="flex flex-row items-center gap-2">
+            <div className="flex flex-row items-center gap-[clamp(0.2rem,0.416vw,0.5rem)]">
               <span className="text-[clamp(0.675rem,0.94vw,1.125rem)] uppercase">{name}</span>
-              <div className="w-[clamp(0.075rem,0.104vw,0.125rem)] h-4 bg-slate-50"></div>
+              <div className="w-[clamp(0.075rem,0.104vw,0.125rem)] h-[clamp(0.4rem,0.832vw,1rem)] bg-slate-50"></div>
               <span className="text-[clamp(0.675rem,0.94vw,1.125rem)] text-[#BDC1CAFF]">
                 {model}
               </span>

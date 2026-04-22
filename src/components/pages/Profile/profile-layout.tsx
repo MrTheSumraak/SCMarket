@@ -1,11 +1,11 @@
 import { Outlet } from 'react-router-dom';
 import SidebarProfile from './profile-sidebar/sidebar-profile';
-import { HeaderUI } from '@/components/UI/headerUI/headerUI';
+import { HeaderUI } from '@/components/ui/headerUI/headerUI';
 
 export const ProfileLayout = () => {
   return (
     <div className="flex min-h-[100vh] h-full">
-      <HeaderUI />
+      <HeaderUI className="!pt-0" />
 
       <SidebarProfile />
 

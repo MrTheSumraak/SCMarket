@@ -5,8 +5,8 @@ const InventoryHeader = () => {
   return (
     <div className="flex flex-row items-center justify-between">
       <div>
-        <h3 className="font-bold">Ваш инвентарь</h3>
-        <p>Все ваши предметыЁ, находящиеся на хранении в SCMarket</p>
+        <h3 className="font-bold text-lgText m-0">Ваш инвентарь</h3>
+        <p className="text-baseText">Все ваши предметы, находящиеся на хранении в SCMarket</p>
       </div>
       <div className="w-1/3">
         {/* <Input icon={<SearchIcon />} placeholder="Поиск" /> */}

@@ -40,17 +40,24 @@ const SidebarProfile = () => {
   // const { openNotification, contextHolder } = useNotification();
   const personID = userData?.id || '';
   return (
-    <aside className="flex flex-col justify-between min-h-full max-h-lvh w-[15%] px-4 bg-[#17191d] overflow-y-auto">
-      <div className="flex flex-col mt-16 qhd:gap-12">
+    <aside className="flex flex-col justify-between min-h-full max-h-lvh w-[12%] px-base bg-[#17191d] overflow-y-auto qhd:w-[10%]">
+      <div className="flex flex-col mt-4xl qhd:gap-3xl">
         {/* секция с аватаркой */}
         <div className="flex flex-col items-center">
-          <ProfileHeader personID={personID} />
+          <ProfileHeader
+            personID={personID}
+            imageURL={
+              'https://avatars.mds.yandex.net/i?id=55486af37a7a88634d4f407c0d6bfd4ffa825219-5278644-images-thumbs&n=13'
+            }
+          />
         </div>
 
         {/* секция со статистикой */}
-        <div className="flex flex-col gap-3 mt-4">
-          <h5 className="qhd:text-2xl">Статистика аккаунта</h5>
-          <div className="flex flex-col gap-5 p-3 bg-[#202224] rounded-xl">
+        <div className="flex flex-col gap-xs mt-base">
+          <h5 className="m-0 text-[clamp(0.35rem,0.729vw,0.875rem)] flex-1 text-nowrap qhd:text-lgText">
+            Статистика аккаунта
+          </h5>
+          <div className="flex flex-col gap-base p-xs bg-[#202224] rounded-xl">
             {STATIC_CONTENT.map((item, index) => (
               <StatisticItem key={index} title={item.title} value={item.value} />
             ))}
@@ -58,7 +65,7 @@ const SidebarProfile = () => {
         </div>
 
         {/* секция с действиями */}
-        <div className="flex flex-col gap-3 mt-6 qhd:gap-6">
+        <div className="flex flex-col gap-xs mt-xl qhd:gap-xl">
           {LINK_VALUES.map((item, index) => (
             <ProfileLinkItem key={index} link={item.link} title={item.title} icon={item.icon} />
           ))}
@@ -66,17 +73,19 @@ const SidebarProfile = () => {
       </div>
 
       {/* секция с кнопкой выхода */}
-      <button className="flex items-center w-full text-xs p-3 mt-5 bg-transparent group">
-        <div className="flex flex-row items-center gap-4">
+      <button className="flex items-center w-full text-base p-xs mt-xl bg-transparent group">
+        <div className="flex flex-row items-center ">
           <LogoutIcon
             className="
-                w-8 h-8 qhd:w-16 qhd:h-16
+                w-[clamp(1.5rem,1.88vw,2rem)] h-[clamp(1.5rem,1.88vw,2rem)] qhd:w-[clamp(1.7rem,2.5vw,3rem)] qhd:h-[clamp(1.7rem,2.5vw,3rem)]
                 transition-all duration-300
                 [@media(hover:hover)]:group-hover:scale-110
                 [@media(hover:hover)]:group-hover:opacity-70
               "
           />
-          <span className="text-center text-red-500 qhd:text-2xl">Выйти из аккаунта</span>
+          <span className="text-center text-red-500 text-xsText qhd:text-baseText">
+            Выйти из аккаунта
+          </span>
         </div>
       </button>
     </aside>
