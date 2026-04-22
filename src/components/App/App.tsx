@@ -50,9 +50,9 @@ function App() {
           <Route
             path="/auction"
             element={
-              <ProtectedRoute onlyUnAuth="Auth">
-                <Auction />
-              </ProtectedRoute>
+              // <ProtectedRoute onlyUnAuth="Auth">
+              <Auction />
+              // </ProtectedRoute>
             }
           />
           <Route
@@ -66,25 +66,25 @@ function App() {
           <Route
             path="/analytics"
             element={
-              <ProtectedRoute onlyUnAuth="Auth">
-                <AnalyticsPage />
-              </ProtectedRoute>
+              // <ProtectedRoute onlyUnAuth="Auth">
+              <AnalyticsPage />
+              // </ProtectedRoute>
             }
           />
           <Route
             path="/analytics/:id"
             element={
-              <ProtectedRoute onlyUnAuth="Auth">
-                <AnalyticCardPage />
-              </ProtectedRoute>
+              // <ProtectedRoute onlyUnAuth="Auth">
+              <AnalyticCardPage />
+              // </ProtectedRoute>
             }
           />
           <Route
             path="/profile"
             element={
-              <ProtectedRoute onlyUnAuth="Auth">
-                <ProfileLayout />
-              </ProtectedRoute>
+              // <ProtectedRoute onlyUnAuth="Auth">
+              <ProfileLayout />
+              // </ProtectedRoute>
             }
           >
             <Route path="inventory" element={<Inventory />} />

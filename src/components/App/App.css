@@ -83,7 +83,6 @@ h6 {
 
 p {
   display: block;
-  margin-block: 1em;
   color: var(--text);
   line-height: 1.4;
   unicode-bidi: isolate;
