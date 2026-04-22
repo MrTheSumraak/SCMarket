@@ -50,9 +50,9 @@ function App() {
           <Route
             path="/auction"
             element={
-              // <ProtectedRoute onlyUnAuth="Auth">
-              <Auction />
-              // </ProtectedRoute>
+              <ProtectedRoute onlyUnAuth="Auth">
+                <Auction />
+              </ProtectedRoute>
             }
           />
           <Route
@@ -82,9 +82,9 @@ function App() {
           <Route
             path="/profile"
             element={
-              // <ProtectedRoute onlyUnAuth="Auth">
-              <ProfileLayout />
-              // </ProtectedRoute>
+              <ProtectedRoute onlyUnAuth="Auth">
+                <ProfileLayout />
+              </ProtectedRoute>
             }
           >
             <Route path="inventory" element={<Inventory />} />

@@ -49,7 +49,7 @@ export const Auction = () => {
   }, []);
 
   useEffect(() => {
-    if (!isCookie && !isStorage) {
+    if (isCookie && isStorage) {
       dispatch(enableLoading());
       const data = getInfoAllItem();
 
