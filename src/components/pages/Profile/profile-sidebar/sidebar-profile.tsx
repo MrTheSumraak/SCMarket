@@ -40,7 +40,7 @@ const SidebarProfile = () => {
   // const { openNotification, contextHolder } = useNotification();
   const personID = userData?.id || '';
   return (
-    <aside className="flex flex-col justify-between min-h-full max-h-lvh w-1/5 px-4 bg-[#17191d] overflow-y-auto">
+    <aside className="flex flex-col justify-between min-h-full max-h-lvh w-[15%] px-4 bg-[#17191d] overflow-y-auto">
       <div className="flex flex-col mt-16 qhd:gap-12">
         {/* секция с аватаркой */}
         <div className="flex flex-col items-center">

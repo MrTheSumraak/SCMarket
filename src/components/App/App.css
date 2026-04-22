@@ -4,15 +4,15 @@
 
 :root {
   /* === Цветовая палитра === */
-  --bg: #0D0F15;                /* глубокий фон */
-  --surface: #151A25;           /* вторичный слой (панели, модалки) */
-  --accent: #3557C8;            /* фирменный синий акцент */
-  --accent-glow: #4D7BFF;       /* неоновое свечение */
-  --accent2: #00BFFF;           /* светло-голубой акцент для hover и деталей */
-  --danger: #E53935;            /* системная ошибка / предупреждение */
-  --text: #EAEAEA;              /* основной текст */
-  --text-muted: #666B78;        /* приглушённый текст */
-  --border: #1E2330;            /* рамки / делители */
+  --bg: #0d0f15; /* глубокий фон */
+  --surface: #151a25; /* вторичный слой (панели, модалки) */
+  --accent: #3557c8; /* фирменный синий акцент */
+  --accent-glow: #4d7bff; /* неоновое свечение */
+  --accent2: #00bfff; /* светло-голубой акцент для hover и деталей */
+  --danger: #e53935; /* системная ошибка / предупреждение */
+  --text: #eaeaea; /* основной текст */
+  --text-muted: #666b78; /* приглушённый текст */
+  --border: #1e2330; /* рамки / делители */
   --radius: 12px;
   --transition: 0.25s ease;
   --link-size: 18px;
@@ -38,19 +38,61 @@ body {
 }
 
 /* === GENERAL TYPOGRAPHY === */
-h1, h2, h3, button {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  display: block;
+  font-weight: bold;
+  margin: 0;
+  margin-block: 1em;
+  unicode-bidi: isolate;
   font-family: 'Montserrat', sans-serif;
   letter-spacing: 0.05em;
   text-transform: uppercase;
+  color: var(--text);
 }
 
-h1, h2, h3 {
-  color: var(--text);
+/* Индивидуальные размеры */
+h1 {
+  font-size: 2em;
+  margin-block: 0.67em;
+}
+h2 {
+  font-size: 1.5em;
+  margin-block: 0.83em;
+}
+h3 {
+  font-size: 1.17em;
+  margin-block: 1em;
+}
+h4 {
+  font-size: 1em;
+  margin-block: 1.33em;
+}
+h5 {
+  font-size: 0.83em;
+  margin-block: 1.67em;
+}
+h6 {
+  font-size: 0.67em;
+  margin-block: 2.33em;
 }
 
 p {
+  display: block;
+  margin-block: 1em;
   color: var(--text);
   line-height: 1.4;
+  unicode-bidi: isolate;
+}
+
+button {
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 /* === LINKS === */
@@ -92,7 +134,8 @@ button:active {
 }
 
 /* === INPUTS === */
-input, textarea {
+input,
+textarea {
   background-color: var(--surface);
   color: var(--text);
   border: 1px solid var(--border);
@@ -103,7 +146,8 @@ input, textarea {
   transition: var(--transition);
 }
 
-input:focus, textarea:focus {
+input:focus,
+textarea:focus {
   border-color: var(--accent);
   box-shadow: var(--glow-accent);
 }

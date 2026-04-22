@@ -75,7 +75,7 @@ function App() {
             path="/analytics/:id"
             element={
               <ProtectedRoute onlyUnAuth="Auth">
-                <AnalyticCardPage />{' '}
+                <AnalyticCardPage />
               </ProtectedRoute>
             }
           />

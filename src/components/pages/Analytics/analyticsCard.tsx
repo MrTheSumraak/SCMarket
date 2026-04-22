@@ -6,10 +6,10 @@ import { AnalyticsTable } from './analyticsTable';
 import { getAnalyticsItem, getHistoryItem } from '../../../utils/SCApi';
 import type { IAnalyticsItem, IItems } from '../../../utils/types';
 import ReactECharts from 'echarts-for-react';
-import { HeaderUI } from '../../UI/headerUI/headerUI';
-import { AlertItemUI } from '../../UI/AlertItemUI/AlertItemUI';
-import { HistoryItemUI } from '../../UI/HistoryItemUI/HistoryItemUI';
 import { formatPrice } from '../../../utils/methods/getInfoItem';
+import { AlertItemUI } from '@/components/ui/AlertItemUI/AlertItemUI';
+import { HistoryItemUI } from '@/components/ui/HistoryItemUI/HistoryItemUI';
+import { HeaderUI } from '@/components/ui/headerUI/headerUI';
 
 interface IAnalyticCard {
   itemid: string;

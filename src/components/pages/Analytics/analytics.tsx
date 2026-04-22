@@ -1,4 +1,3 @@
-import { HeaderUI } from '../../UI/headerUI/headerUI';
 import styles from './styles.module.css';
 import { useRef, useState, useMemo } from 'react';
 import type { IAnalyticsItem } from '../../../utils/types';
@@ -8,6 +7,7 @@ import ReactECharts from 'echarts-for-react';
 import { AnalyticsTable } from './analyticsTable';
 import { AnalyticCard } from './analyticsCard';
 import { useNotification } from '../../../utils/methods/notification';
+import { HeaderUI } from '@/components/ui/headerUI/headerUI';
 
 export const AnalyticsPage = () => {
   const inputPlace = useRef<HTMLInputElement | null>(null);

@@ -1,5 +1,4 @@
 import styles from './auction.module.css';
-import { HeaderUI } from '../../UI/headerUI/headerUI';
 import { useEffect, useState, useMemo, useLayoutEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -8,7 +7,6 @@ import {
   isLoadingAuction,
 } from '../../../service/slices/items.slice';
 import { nanoid } from '@reduxjs/toolkit';
-import { LoadingUI } from '../../UI/loadingUI/loadingUI';
 import { getCookie } from '../../../utils/cookie';
 import { getImageItem } from '../../../utils/methods/extractImage';
 import {
@@ -20,11 +18,13 @@ import {
   type IGetInfoItem,
 } from '../../../utils/methods/getInfoItem';
 import { Pagination } from 'antd';
-import { FilterHorizontal } from '../../UI/filterUI/filterUI';
 import { useDebounce } from '../../../utils/hooks/useDebounced';
 import { useNavigate } from 'react-router-dom';
 import type { AppDispatch } from '../../../service/store';
 import { useCheckUser } from '../../../service/Async/auth';
+import { FilterHorizontal } from '@/components/ui/filterUI/filterUI';
+import { LoadingUI } from '@/components/ui/loadingUI/loadingUI';
+import { HeaderUI } from '@/components/ui/headerUI/headerUI';
 
 export const Auction = () => {
   const isLoading = useSelector(isLoadingAuction);
@@ -49,7 +49,7 @@ export const Auction = () => {
   }, []);
 
   useEffect(() => {
-    if (isCookie && isStorage) {
+    if (!isCookie && !isStorage) {
       dispatch(enableLoading());
       const data = getInfoAllItem();
 
